@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>тут контакты</title>
+</head>
+<body>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Skystore</h5>
+    <h6> ТУТ НАШИ КОНТАКТЫ ПОДПИСЫВАЙТЕСЬ СТАВЬТЕ ЛАЙКИ</h6>
+    <nav class="ms-5">
+        <a class="p-2 btn btn-outline-primary" href="/">Каталог</a>
+        <a class="p-2 btn btn-outline-primary" href="/contacts/">Контакты</a>
+    </nav>
+    <form method="post">
+        {% csrf_token %}
+        <label for="exampleInputName1" class="form-label">Ваше имя</label>
+        <input type="text" name="name"/><br>
+        <label for="exampleInputEmail1" class="form-label">Ваша почта</label>
+        <input type="email" name="email"/><br>
+        <label for="exampleInputtext1" class="form-label">Обратная связь</label>
+        <textarea name="message"></textarea><br>
+        <input type="submit" value="Отправить"/>
+    </form>
+</div>
+</body>
+</html>
