@@ -27,7 +27,7 @@ class Product(models.Model):
     objects = models.Manager()
 
     def __str__(self):
-        return f'{self.name}: {self.price}'
+        return f'{self.name}: {self.price} {self.description}'
 
     class Meta:
         verbose_name = 'Товар'
@@ -45,5 +45,5 @@ class Contact(models.Model):
 
     class Meta:
         verbose_name = 'Контакт'
-        verbose_name_plural = 'Контактов'
+        verbose_name_plural = 'Контакты'
 

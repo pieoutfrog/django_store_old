@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>тут домашняя страница</title>
-</head>
+{% extends 'catalog/base.html' %}
+<html lang="ru">
 <body>
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Skystore</h5>
-    <h6>ЭТО ГЛАВНАЯ СТРАНИЦА</h6>
-    <nav class="ms-5">
-        <a class="p-2 btn btn-outline-primary" href="/">Каталог</a>
-        <a class="p-2 btn btn-outline-primary" href="/contacts/">Контакты</a>
-    </nav>
-    {% for product in latest_products %}
-    <div>
-        <h3>{{ product.name }}</h3>
-        <p>Цена: {{ product.price }}</p>
-        <p>Описание: {{ product.description }}</p>
+{% block content %}
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">{{ title }}</h1>
+        <p class="lead text-muted">Не упустите возможность купить все, что вам необходимо по привлекательной цене!</p>
     </div>
-{% endfor %}
+</section>
+<div class="row">
+    {% for product in latest_products %}
+    {% include 'catalog/includes/inc_catalog_product.html' %}
+    {% endfor %}
 </div>
+
+
+{% endblock %}
 </body>
 </html>

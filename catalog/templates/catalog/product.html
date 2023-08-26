@@ -1,0 +1,18 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<html lang="ru">
+<body>
+<div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="card-title">{{ product.name }}</h3>
+                <p class="card-text">Цена: {{ product.price }}</p>
+                <p class="card-text">Описание: {{ product.description|slice:":100" }}</p>
+            </div>
+            <img src="{{ product.preview|mymedia }}" alt="Изображение" class="card-img-right img-fluid" style="max-width: 200px;">
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

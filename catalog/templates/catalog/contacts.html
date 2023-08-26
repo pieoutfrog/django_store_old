@@ -1,39 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>тут контакты</title>
-</head>
+{% extends 'catalog/base.html' %}
+<html lang="ru">
 <body>
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Skystore</h5>
-    <h6> ТУТ НАШИ КОНТАКТЫ ПОДПИСЫВАЙТЕСЬ СТАВЬТЕ ЛАЙКИ</h6>
-    <nav class="ms-5">
-        <a class="p-2 btn btn-outline-primary" href="/">Каталог</a>
-        <a class="p-2 btn btn-outline-primary" href="/contacts/">Контакты</a>
-    </nav>
-    <form method="post" action="{% url 'contacts' %}">
-        {% csrf_token %}
-        <label for="exampleInputName1" class="form-label">Ваше имя</label>
-        <input type="text" name="name"/><br>
-        <label for="exampleInputEmail1" class="form-label">Ваша почта</label>
-        <input type="email" name="email"/><br>
-        <label for="exampleInputtext1" class="form-label">Обратная связь</label>
-        <textarea name="message"></textarea><br>
-        <input type="submit" value="Отправить"/>
-    </form>
-</div>
-<div>
-    <h3>Контактные данные</h3>
-    <ul>
-        {% for contact in all_contacts %}
-            <li>
-                <p>Имя: {{ contact.name }}</p>
-                <p>Почта: {{ contact.email }}</p>
-                <p>Сообщение: {{ contact.message }}</p>
-            </li>
-        {% endfor %}
-    </ul>
+{% block content %}
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div>
+                    <h3>{{ title }}</h3>
+                    <ul>
+                        {% for contact in all_contacts %}
+                        <li>
+                            <p>Имя: {{ contact.name }}</p>
+                            <p>Почта: {{ contact.email }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <form method="post" action="{% url 'contacts' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleInputName1" class="form-label">Ваше имя</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Ваша почта</label>
+                        <input type="email" class="form-control" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputtext1" class="form-label">Обратная связь</label>
+                        <textarea class="form-control" name="message"></textarea>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Отправить">
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
+{% endblock %}
 </html>

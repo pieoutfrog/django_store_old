@@ -1,0 +1,10 @@
+{% extends 'catalog/base.html' %}
+<html lang="ru">
+<body>
+{% block content %}
+{% for product in products %}
+    {% include 'catalog/includes/inc_catalog_product.html' %}
+{% endfor %}
+{% endblock %}
+</body>
+</html>
