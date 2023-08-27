@@ -22,8 +22,8 @@ class Product(models.Model):
     preview = models.ImageField(upload_to='previews/', verbose_name='Превью', **NULLABLE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')
     price = models.DecimalField(max_digits=8, decimal_places=2)
-    creation_date = models.DateTimeField(verbose_name='Дата создания')
-    last_change_date = models.DateTimeField(verbose_name='Дата последнего изменения')
+    creation_date = models.DateField(verbose_name='Дата создания')
+    last_change_date = models.DateField(verbose_name='Дата последнего изменения')
     objects = models.Manager()
 
     def __str__(self):

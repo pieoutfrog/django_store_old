@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.core.paginator import Paginator, PageNotAnInteger
+from django.shortcuts import render, redirect
 from catalog.models import Product, Contact, Category
+from catalog.templates.catalog.forms import ProductForm
 
 
 def home(request):
@@ -32,7 +34,14 @@ def product_details(request, product_id):
 
 def products(request):
     products_list = Product.objects.all()
-    context = {'products': products_list}
+    paginator = Paginator(products_list, 5)
+    page = request.GET.get('page')
+    try:
+        product_page = paginator.page(page)
+    except PageNotAnInteger:
+        # Если номер страницы не является целым числом, отображаем первую страницу
+        product_page = paginator.page(1)
+    context = {'products': product_page}
     return render(request, 'catalog/products.html', context)
 
 
@@ -43,7 +52,19 @@ def category_products(request, category_id):
     return render(request, 'catalog/category_products.html', context)
 
 
+def create_product(request):
+    error = ''
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('products')
+        else:
+            error = 'Неверная форма'
 
-
-
-
+    form = ProductForm()
+    context = {
+        'form': form,
+        'error': error
+    }
+    return render(request, 'catalog/product_create.html', context)
